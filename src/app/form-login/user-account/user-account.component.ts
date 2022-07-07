@@ -9,12 +9,18 @@ import {Router} from '@angular/router';
 })
 export class UserAccountComponent implements OnInit {
   avatar:string;
+  admin:any=["ROLE_ADMIN"];
+  isCheckAdmin=false;
   constructor(private tokenService:TokenService,private router:Router) { }
 
   ngOnInit(): void {
     if (this.tokenService.getToken()){
       this.avatar=this.tokenService.getAvatar();
+      if (JSON.stringify(this.tokenService.getRoles())==JSON.stringify(this.admin)){
+        this.isCheckAdmin=true;
+      }
     }
+
   }
 logOut(){
 // this.tokenService.logOut();

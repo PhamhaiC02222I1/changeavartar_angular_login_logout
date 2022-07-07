@@ -3,6 +3,7 @@ import {FormControl, Validators} from '@angular/forms';
 import {AuthService} from '../../../service/auth.service';
 import {ChangeProfile} from '../../../model/ChangeProfile';
 import {TokenService} from '../../../service/token.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-change-profile',
@@ -25,7 +26,8 @@ emailFormControl=new FormControl('',[
   success:any={
   message:"success!!!!!!"
   }
-  constructor(private authService:AuthService,private tokenService:TokenService) { }
+  constructor(private authService:AuthService,private tokenService:TokenService,
+              private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -45,7 +47,13 @@ emailFormControl=new FormControl('',[
       if (JSON.stringify(data)==JSON.stringify(this.success)){
         this.status='Change Profile success!!!'
         this.tokenService.setName(this.form.name);
-        window.location.reload();
+        // this.router.navigate(['user-account']).then(() => {
+        //   window.location.reload();
+        // });
+        this.tokenService.logOut();
+        this.router.navigate(['']).then(() => {
+            window.location.reload();
+          });
       }
     })
   }

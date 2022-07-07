@@ -39,6 +39,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { ChangeAvatarComponent } from './form-login/manage-profile/change-avatar/change-avatar.component';
 import {httpInterceptorProviders} from './security/auth.interceptor';
 import { ChangeProfileComponent } from './form-login/manage-profile/change-profile/change-profile.component';
+import { PageUserComponent } from './form-login/admin-manage/page-user/page-user.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 export const appRoutes: Routes = [
@@ -49,6 +51,7 @@ export const appRoutes: Routes = [
   {path: 'change-password', component: ChangePasswordComponent, data: {title: 'Change-Password'}},
   {path:'change-avatar',component:ChangeAvatarComponent,data: {title: 'Change-Avatar'}},
   {path:'change-profile',component:ChangeProfileComponent,data:{title: 'Change-Profile'}},
+  {path:'page-user',component:PageUserComponent,data:{title: 'Page-User'}},
   { path: 'guide/getting-started',
     component: GettingStartedComponent,
     data: { title: 'Getting Started' }
@@ -56,7 +59,7 @@ export const appRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, ChangePasswordComponent, UploadAvatarComponent, UploadFileComponent, ChangeAvatarComponent, ChangeProfileComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, ChangePasswordComponent, UploadAvatarComponent, UploadFileComponent, ChangeAvatarComponent, ChangeProfileComponent, PageUserComponent],
   imports: [
     FormsModule,
     MatNativeDateModule,
@@ -75,7 +78,7 @@ export const appRoutes: Routes = [
     AngularFireModule.initializeApp(environment.firebaseConfig),
     NavBarModule, FooterModule,
     NgxAudioPlayerModule,
-    RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, FormsModule, ReactiveFormsModule, MatProgressSpinnerModule, MatProgressBarModule
+    RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, FormsModule, ReactiveFormsModule, MatProgressSpinnerModule, MatProgressBarModule, MatPaginatorModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

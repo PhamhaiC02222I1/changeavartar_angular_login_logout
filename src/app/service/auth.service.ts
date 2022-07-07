@@ -39,4 +39,5 @@ export class AuthService {
   getData(){
     return this.data;
   }
+
 }

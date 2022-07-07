@@ -8,10 +8,13 @@ import {Router} from '@angular/router';
   styleUrls: ['./user-account.component.scss']
 })
 export class UserAccountComponent implements OnInit {
-
+  avatar:string;
   constructor(private tokenService:TokenService,private router:Router) { }
 
   ngOnInit(): void {
+    if (this.tokenService.getToken()){
+      this.avatar=this.tokenService.getAvatar();
+    }
   }
 logOut(){
 // this.tokenService.logOut();

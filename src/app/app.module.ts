@@ -38,6 +38,7 @@ import { UploadFileComponent } from './upload/upload-file/upload-file.component'
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { ChangeAvatarComponent } from './form-login/manage-profile/change-avatar/change-avatar.component';
 import {httpInterceptorProviders} from './security/auth.interceptor';
+import { ChangeProfileComponent } from './form-login/manage-profile/change-profile/change-profile.component';
 
 
 export const appRoutes: Routes = [
@@ -46,8 +47,8 @@ export const appRoutes: Routes = [
   { path: 'login', component: LoginComponent, data: {title: 'Login'}},
   { path: 'user-account', component: UserAccountComponent, data: {title: 'User-Account'}},
   {path: 'change-password', component: ChangePasswordComponent, data: {title: 'Change-Password'}},
-  {path:'change-avatar',component:ChangeAvatarComponent,data: {title: 'Change-Avatar'}
-  },
+  {path:'change-avatar',component:ChangeAvatarComponent,data: {title: 'Change-Avatar'}},
+  {path:'change-profile',component:ChangeProfileComponent,data:{title: 'Change-Profile'}},
   { path: 'guide/getting-started',
     component: GettingStartedComponent,
     data: { title: 'Getting Started' }
@@ -55,7 +56,7 @@ export const appRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, ChangePasswordComponent, UploadAvatarComponent, UploadFileComponent, ChangeAvatarComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, ChangePasswordComponent, UploadAvatarComponent, UploadFileComponent, ChangeAvatarComponent, ChangeProfileComponent],
   imports: [
     FormsModule,
     MatNativeDateModule,

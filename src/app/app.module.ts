@@ -41,6 +41,8 @@ import {httpInterceptorProviders} from './security/auth.interceptor';
 import { ChangeProfileComponent } from './form-login/manage-profile/change-profile/change-profile.component';
 import { PageUserComponent } from './form-login/admin-manage/page-user/page-user.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { CreateCategoryComponent } from './content/categoryManager/create-category/create-category.component';
+import { PageCategoryComponent } from './content/categoryManager/page-category/page-category.component';
 
 
 export const appRoutes: Routes = [
@@ -52,6 +54,8 @@ export const appRoutes: Routes = [
   {path:'change-avatar',component:ChangeAvatarComponent,data: {title: 'Change-Avatar'}},
   {path:'change-profile',component:ChangeProfileComponent,data:{title: 'Change-Profile'}},
   {path:'page-user',component:PageUserComponent,data:{title: 'Page-User'}},
+  {path:'create-category',component:CreateCategoryComponent,data:{title: 'Create-Category'}},
+  {path:'page-category',component:PageCategoryComponent,data:{title: 'Page-Category'}},
   { path: 'guide/getting-started',
     component: GettingStartedComponent,
     data: { title: 'Getting Started' }
@@ -59,7 +63,7 @@ export const appRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, ChangePasswordComponent, UploadAvatarComponent, UploadFileComponent, ChangeAvatarComponent, ChangeProfileComponent, PageUserComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, ChangePasswordComponent, UploadAvatarComponent, UploadFileComponent, ChangeAvatarComponent, ChangeProfileComponent, PageUserComponent, CreateCategoryComponent, PageCategoryComponent],
   imports: [
     FormsModule,
     MatNativeDateModule,

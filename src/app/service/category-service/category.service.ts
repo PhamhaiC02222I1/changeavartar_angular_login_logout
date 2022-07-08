@@ -9,9 +9,17 @@ import {Observable} from 'rxjs';
 })
 export class CategoryService {
 //API_LOCAL
-  private API_CATEGORY=environment.API_LOCAL+'categories'
+  private API_CATEGORY=environment.API_LOCAL+'categories/list-category'
+  // private API_DELETE_CATEGORY=environment.API_LOCAL+'categories/delete-category/'
   constructor(private http:HttpClient) { }
   createCategory(category:Category):Observable<Category>{
     return this.http.post<Category>(this.API_CATEGORY,category);
   }
+  pageCategory(request){
+    const params=request;
+    return this.http.get(this.API_CATEGORY,{params})
+  }
+  // deleteCategory(category:Category):Observable<Category>{
+  //   return this.http.delete<Category>(this.API_DELETE_CATEGORY,category);
+  // }
 }

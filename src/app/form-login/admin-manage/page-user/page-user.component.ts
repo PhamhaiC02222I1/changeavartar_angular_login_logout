@@ -12,12 +12,12 @@ export class PageUserComponent implements OnInit {
   totalElements: number = 0;
   users: UserAccount;
   loading: boolean;
-
+  searchText;
   constructor(private adminService: AdminService) {
   }
 
   ngOnInit(): void {
-    this.getListRequest({page:0,size:3})
+    this.getListRequest({page:0,size:15})
   }
 
   private getListRequest(request) {

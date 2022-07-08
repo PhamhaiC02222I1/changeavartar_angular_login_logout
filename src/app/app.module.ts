@@ -43,6 +43,8 @@ import { PageUserComponent } from './form-login/admin-manage/page-user/page-user
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { CreateCategoryComponent } from './content/categoryManager/create-category/create-category.component';
 import { PageCategoryComponent } from './content/categoryManager/page-category/page-category.component';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
+// import {AngularFireAuthGuard} from '@angular/fire/auth-guard';
 
 
 export const appRoutes: Routes = [
@@ -82,7 +84,7 @@ export const appRoutes: Routes = [
     AngularFireModule.initializeApp(environment.firebaseConfig),
     NavBarModule, FooterModule,
     NgxAudioPlayerModule,
-    RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, FormsModule, ReactiveFormsModule, MatProgressSpinnerModule, MatProgressBarModule, MatPaginatorModule
+    RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, FormsModule, ReactiveFormsModule, MatProgressSpinnerModule, MatProgressBarModule, MatPaginatorModule, Ng2SearchPipeModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

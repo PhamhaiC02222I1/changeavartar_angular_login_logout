@@ -12,7 +12,7 @@
                     </mat-form-field>
                     <br>
 <!--                    <app-upload-avatar (giveURLtoCreate)="onChangeAvatar($event)"></app-upload-avatar>-->
-                    <button mat-stroked-button color="accent" class="mat-button-toggle-group btn-outline-primary">Create Category
+                    <button *ngIf="isCheckUser" mat-stroked-button color="accent" class="mat-button-toggle-group btn-outline-primary">Create Category
                         <mat-icon color="accent" matSuffix>add_circle_outline</mat-icon>
                     </button>
                 </form>

@@ -3,6 +3,7 @@ import {PageEvent} from '@angular/material/paginator';
 import {UserAccount} from '../../../model/UserAccount';
 import {Category} from '../../../model/Category';
 import {CategoryService} from '../../../service/category-service/category.service';
+import {TokenService} from '../../../service/token.service';
 
 @Component({
   selector: 'app-page-category',
@@ -13,11 +14,16 @@ export class PageCategoryComponent implements OnInit {
   totalElements: number = 0;
   categorys: Category[]=[];
   loading: boolean;
-  constructor(private categoryService:CategoryService) { }
+  searchText;
+  isCheckUser;
+  constructor(private categoryService:CategoryService,
+              private tokenService:TokenService) { }
 
   ngOnInit(): void {
     this.getListRequest({page:0,size:5})
-
+if (this.tokenService.getToken()){
+  this.isCheckUser=true;
+}
   }
   private getListRequest(request) {
     this.loading = true;

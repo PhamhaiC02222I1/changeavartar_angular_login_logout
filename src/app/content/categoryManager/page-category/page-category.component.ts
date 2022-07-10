@@ -16,6 +16,10 @@ export class PageCategoryComponent implements OnInit {
   loading: boolean;
   searchText;
   isCheckUser;
+
+  searchCategorys:Category[]=[];
+  name;
+  checkSearch=false;
   constructor(private categoryService:CategoryService,
               private tokenService:TokenService) { }
 
@@ -23,6 +27,9 @@ export class PageCategoryComponent implements OnInit {
     this.getListRequest({page:0,size:5})
 if (this.tokenService.getToken()){
   this.isCheckUser=true;
+  if (!this.checkSearch){
+    this.getListRequest({page:0,size:5});
+  }
 }
   }
   private getListRequest(request) {
@@ -43,5 +50,32 @@ if (this.tokenService.getToken()){
     request['size'] = event.pageSize.toString();
     console.log('request[size]=====', request['size']);
     this.getListRequest(request);
+
+    this.getSearchRequest(request,this.name);
+  }
+
+
+  private getSearchRequest(request,name){
+    this.loading=true;
+    this.name=name;
+    if (this.name==''){
+      return;
+    }
+    this.categoryService.searchCategoryName(request,this.name).subscribe(data=>{
+      this.searchCategorys=data['content'];
+      this.totalElements=data['totalElements'];
+      this.loading = false;
+    },error => {
+      this.loading=false;
+    });
+
+  }
+  private onSearch(){
+    this.checkSearch=true;
+    if (this.name==''){
+      this.checkSearch=false;
+      return;
+    }
+    this.getSearchRequest({page:0,size:15},this.name);
   }
 }

@@ -39,4 +39,12 @@ export class PageUserComponent implements OnInit {
     console.log('request[size]=====', request['size']);
     this.getListRequest(request);
   }
+  // private onSearch(){
+  //   this.checkSearch=true;
+  //   if (this.name==''){
+  //     this.checkSearch=false;
+  //     return;
+  //   }
+  //   this.getListRequest({page:0,size:15},this.name);
+  // }
 }

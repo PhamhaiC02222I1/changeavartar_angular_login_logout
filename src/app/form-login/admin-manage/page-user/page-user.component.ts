@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {UserAccount} from '../../../model/UserAccount';
 import {AdminService} from '../../../service/admin.service';
 import {PageEvent} from '@angular/material/paginator';
+import {isFatalLinkerError} from '@angular/compiler-cli/linker';
+import {TokenService} from '../../../service/token.service';
 
 @Component({
   selector: 'app-page-user',
@@ -13,11 +15,23 @@ export class PageUserComponent implements OnInit {
   users: UserAccount;
   loading: boolean;
   searchText;
-  constructor(private adminService: AdminService) {
+  isCheckUser;
+
+  username;
+  checkSearch=false;
+  sizeSearch:number;
+  userSearch:UserAccount[]=[];
+  constructor(private adminService: AdminService,private tokenService:TokenService) {
   }
 
   ngOnInit(): void {
-    this.getListRequest({page:0,size:15})
+    this.getListRequest({page:0,size:5})
+    if (this.tokenService.getToken()){
+      this.isCheckUser=true;
+      if (!this.checkSearch){
+        this.getListRequest({page:0,size:5});
+      }
+    }
   }
 
   private getListRequest(request) {
@@ -39,12 +53,28 @@ export class PageUserComponent implements OnInit {
     console.log('request[size]=====', request['size']);
     this.getListRequest(request);
   }
-  // private onSearch(){
-  //   this.checkSearch=true;
-  //   if (this.name==''){
-  //     this.checkSearch=false;
-  //     return;
-  //   }
-  //   this.getListRequest({page:0,size:15},this.name);
-  // }
+  private getSearchRequest(request,username){
+    this.loading=true;
+    this.username=username;
+    if (this.username==''){
+      return;
+    }
+    this.adminService.searchUsername(request,this.username).subscribe(data=>{
+      this.userSearch=data['content'];
+      this.totalElements=data['totalElements'];
+      this.sizeSearch=this.totalElements;
+      this.loading = false;
+    },error => {
+      this.loading=false;
+    });
+
+  }
+  private onSearch(){
+    this.checkSearch=true;
+    if (this.username==''){
+      this.checkSearch=false;
+      return;
+    }
+    this.getSearchRequest({page:0,size:this.sizeSearch},this.username);
+  }
 }

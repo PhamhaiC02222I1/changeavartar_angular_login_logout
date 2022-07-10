@@ -20,6 +20,7 @@ export class PageCategoryComponent implements OnInit {
   searchCategorys:Category[]=[];
   name;
   checkSearch=false;
+  sizeSearch:number;
   constructor(private categoryService:CategoryService,
               private tokenService:TokenService) { }
 
@@ -64,6 +65,7 @@ if (this.tokenService.getToken()){
     this.categoryService.searchCategoryName(request,this.name).subscribe(data=>{
       this.searchCategorys=data['content'];
       this.totalElements=data['totalElements'];
+      this.sizeSearch=this.totalElements;
       this.loading = false;
     },error => {
       this.loading=false;
@@ -76,6 +78,6 @@ if (this.tokenService.getToken()){
       this.checkSearch=false;
       return;
     }
-    this.getSearchRequest({page:0,size:15},this.name);
+    this.getSearchRequest({page:0,size:this.sizeSearch},this.name);
   }
 }

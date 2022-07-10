@@ -8,7 +8,8 @@ import {environment} from '../../environments/environment.prod';
 export class AdminService {
 //API LOCAL
   private API_PAGE_USER_LIST=environment.API_LOCAL+'users/list';
- private API_PAGE_USER=environment.API_LOCAL+'users';
+ // private API_PAGE_USER=environment.API_LOCAL+'users';
+ private API_PAGE_USER_SEARCH=environment.API_LOCAL+'users/search?username=';
   constructor(private http:HttpClient) { }
   pageUser(request){
     const params=request;
@@ -17,6 +18,6 @@ export class AdminService {
   searchUsername(request,search){
     const params=request;
     const username=search;
-    return this.http.get(this.API_PAGE_USER+'/search/'+username,{params});
+    return this.http.get(this.API_PAGE_USER_SEARCH+username,{params});
   }
 }

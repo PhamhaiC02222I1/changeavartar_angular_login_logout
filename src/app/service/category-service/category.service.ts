@@ -9,10 +9,12 @@ import {Observable} from 'rxjs';
 })
 export class CategoryService {
 //API_LOCAL
+  private API_CATEGORY=environment.API_LOCAL+'categories';
   private API_CATEGORY_LIST=environment.API_LOCAL+'categories/list-category'
   private API_CATEGORY_CREATE=environment.API_LOCAL+'categories/create-category'
   private API_CATEGORY_SEARCH=environment.API_LOCAL+'categories/search?name=';
   // private API_DELETE_CATEGORY=environment.API_LOCAL+'categories/delete-category/'
+  // private API_CATEGORY_UPDATE=environment.API_LOCAL
   constructor(private http:HttpClient) { }
   createCategory(category:Category):Observable<Category>{
     return this.http.post<Category>(this.API_CATEGORY_CREATE,category);
@@ -28,5 +30,11 @@ export class CategoryService {
     const params=request;
     const name=search;
     return this.http.get(this.API_CATEGORY_SEARCH+name,{params});
+  }
+  getCategoryById(id:number):Observable<Category>{
+    return this.http.get<Category>(`${this.API_CATEGORY}/${id}`)
+  }
+  updateCategory(id:number,category:Category):Observable<Category>{
+    return this.http.put<Category>(`${this.API_CATEGORY}/${id}`,category);
   }
 }

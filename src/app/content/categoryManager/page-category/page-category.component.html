@@ -49,14 +49,17 @@
                 </div>
                 <div class="row" *ngIf="!checkSearch">
                     <div class="column" *ngFor="let category of categorys | filter:searchText">
-                        <!--                        <button mat-icon-button (click)="openDialog(user.id)">-->
-                        <!--                            <mat-icon color="warn">delete</mat-icon>-->
-                        <!--                        </button>-->
+<!--                                                <button mat-icon-button (click)="openDialog(user.id)">-->
+<!--                                                    <mat-icon color="warn">delete</mat-icon>-->
+<!--                                                </button>-->
                         <!--                        <button [routerLink]="['/change-role/',user.id]" mat-icon-button color="primary">-->
                         <!--                            <mat-icon>edit</mat-icon>-->
                         <!--                        </button>-->
                         <button [routerLink]="['/update-category/',category.id]" style="color: #9C27B0" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
                             <mat-icon>edit</mat-icon>
+                        </button>
+                        <button [routerLink]="['/delete-category/',category.id]" style="color: #9C27B0" mat-icon-button >
+                            <mat-icon color="warn">delete</mat-icon>
                         </button>
                         <div class="card">
                             <i style="font-size: 1.5vw; color: crimson">{{category.name}}</i>

@@ -44,6 +44,12 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { CreateCategoryComponent } from './content/categoryManager/create-category/create-category.component';
 import { PageCategoryComponent } from './content/categoryManager/page-category/page-category.component';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import { UpdateCategoryComponent } from './content/categoryManager/update-category/update-category.component';
+import { DeleteCategoryComponent } from './content/categoryManager/delete-category/delete-category.component';
+import { DeleteUserComponent } from './form-login/admin-manage/delete-user/delete-user.component';
+import { CreateProductComponent } from './content/productManager/create-product/create-product.component';
+import {MatSelectModule} from '@angular/material/select';
+import { PageProductComponent } from './content/productManager/page-product/page-product.component';
 // import {AngularFireAuthGuard} from '@angular/fire/auth-guard';
 
 
@@ -58,6 +64,12 @@ export const appRoutes: Routes = [
   {path:'page-user',component:PageUserComponent,data:{title: 'Page-User'}},
   {path:'create-category',component:CreateCategoryComponent,data:{title: 'Create-Category'}},
   {path:'page-category',component:PageCategoryComponent,data:{title: 'Page-Category'}},
+  {path:'update-category/:id',component:UpdateCategoryComponent,data:{title: 'Update-Category'}},
+  {path:'delete-category/:id',component:DeleteCategoryComponent,data:{title: 'Delete-Category'}},
+  {path:'delete-user/:id',component:DeleteUserComponent,data:{title: 'Delete-User'}},
+  {path:'create-product',component:CreateProductComponent,data:{title: 'Create-Product'}},
+  {path:'page-product',component:PageProductComponent,data:{title: 'Page-Product'}},
+
   { path: 'guide/getting-started',
     component: GettingStartedComponent,
     data: { title: 'Getting Started' }
@@ -65,7 +77,7 @@ export const appRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, ChangePasswordComponent, UploadAvatarComponent, UploadFileComponent, ChangeAvatarComponent, ChangeProfileComponent, PageUserComponent, CreateCategoryComponent, PageCategoryComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, ChangePasswordComponent, UploadAvatarComponent, UploadFileComponent, ChangeAvatarComponent, ChangeProfileComponent, PageUserComponent, CreateCategoryComponent, PageCategoryComponent, UpdateCategoryComponent, DeleteCategoryComponent, DeleteUserComponent, CreateProductComponent, PageProductComponent],
   imports: [
     FormsModule,
     MatNativeDateModule,
@@ -84,7 +96,7 @@ export const appRoutes: Routes = [
     AngularFireModule.initializeApp(environment.firebaseConfig),
     NavBarModule, FooterModule,
     NgxAudioPlayerModule,
-    RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, FormsModule, ReactiveFormsModule, MatProgressSpinnerModule, MatProgressBarModule, MatPaginatorModule, Ng2SearchPipeModule
+    RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, FormsModule, ReactiveFormsModule, MatProgressSpinnerModule, MatProgressBarModule, MatPaginatorModule, Ng2SearchPipeModule, MatSelectModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

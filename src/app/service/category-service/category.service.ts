@@ -13,7 +13,7 @@ export class CategoryService {
   private API_CATEGORY_LIST=environment.API_LOCAL+'categories/list-category'
   private API_CATEGORY_CREATE=environment.API_LOCAL+'categories/create-category'
   private API_CATEGORY_SEARCH=environment.API_LOCAL+'categories/search?name=';
-  // private API_DELETE_CATEGORY=environment.API_LOCAL+'categories/delete-category/'
+  private API_DELETE_CATEGORY=environment.API_LOCAL+'categories/delete-category'
   // private API_CATEGORY_UPDATE=environment.API_LOCAL
   constructor(private http:HttpClient) { }
   createCategory(category:Category):Observable<Category>{
@@ -36,5 +36,11 @@ export class CategoryService {
   }
   updateCategory(id:number,category:Category):Observable<Category>{
     return this.http.put<Category>(`${this.API_CATEGORY}/${id}`,category);
+  }
+  deleteCategory(id:number):Observable<Category>{
+    return this.http.delete<Category>(`${this.API_DELETE_CATEGORY}/${id}`)
+  }
+  getListCategory():Observable<Category[]>{
+    return this.http.get<Category[]>(this.API_CATEGORY);
   }
 }

@@ -10,7 +10,7 @@ import {Category} from '../../../model/Category';
 })
 export class DeleteCategoryComponent implements OnInit {
   category:Category;
-  status='Detail of Category';
+  status='Category';
 
   success:any={
     message:"delete success"

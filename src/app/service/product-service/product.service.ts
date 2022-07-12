@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment.prod';
 import {Product} from '../../model/Product';
 import {Observable} from 'rxjs';
+import {Category} from '../../model/Category';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,14 @@ private API_PRODUCT=environment.API_LOCAL+'product';
     const params=request;
     const nameProduct=search;
     return this.http.get(this.API_PRODUCT+'/search?nameProduct='+nameProduct,{params});
+  }
+  deleteProduct(id:number):Observable<Product>{
+    return this.http.delete<Product>(`${this.API_PRODUCT}/${id}`)
+  }
+  getProductById(id:number):Observable<Product>{
+    return this.http.get<Product>(`${this.API_PRODUCT}/${id}`)
+  }
+  updateProduct(id:number,product:Product):Observable<Product>{
+    return this.http.put<Product>(`${this.API_PRODUCT}/${id}`,product);
   }
 }

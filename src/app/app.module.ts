@@ -50,6 +50,8 @@ import { DeleteUserComponent } from './form-login/admin-manage/delete-user/delet
 import { CreateProductComponent } from './content/productManager/create-product/create-product.component';
 import {MatSelectModule} from '@angular/material/select';
 import { PageProductComponent } from './content/productManager/page-product/page-product.component';
+import { DeleteProductComponent } from './content/productManager/delete-product/delete-product.component';
+import { UpdateProductComponent } from './content/productManager/update-product/update-product.component';
 // import {AngularFireAuthGuard} from '@angular/fire/auth-guard';
 
 
@@ -69,6 +71,8 @@ export const appRoutes: Routes = [
   {path:'delete-user/:id',component:DeleteUserComponent,data:{title: 'Delete-User'}},
   {path:'create-product',component:CreateProductComponent,data:{title: 'Create-Product'}},
   {path:'page-product',component:PageProductComponent,data:{title: 'Page-Product'}},
+  {path:'delete-product/:id',component:DeleteProductComponent,data:{title: 'Delete-Product'}},
+  {path:'update-product/:id',component:UpdateProductComponent,data:{title: 'Update-Product'}},
 
   { path: 'guide/getting-started',
     component: GettingStartedComponent,
@@ -77,7 +81,7 @@ export const appRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, ChangePasswordComponent, UploadAvatarComponent, UploadFileComponent, ChangeAvatarComponent, ChangeProfileComponent, PageUserComponent, CreateCategoryComponent, PageCategoryComponent, UpdateCategoryComponent, DeleteCategoryComponent, DeleteUserComponent, CreateProductComponent, PageProductComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, ChangePasswordComponent, UploadAvatarComponent, UploadFileComponent, ChangeAvatarComponent, ChangeProfileComponent, PageUserComponent, CreateCategoryComponent, PageCategoryComponent, UpdateCategoryComponent, DeleteCategoryComponent, DeleteUserComponent, CreateProductComponent, PageProductComponent, DeleteProductComponent, UpdateProductComponent],
   imports: [
     FormsModule,
     MatNativeDateModule,

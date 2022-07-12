@@ -1,43 +1,39 @@
-import {Component, OnInit} from '@angular/core';
-import {UserAccount} from '../../../model/UserAccount';
-import {AdminService} from '../../../service/admin.service';
+import { Component, OnInit } from '@angular/core';
 import {PageEvent} from '@angular/material/paginator';
-import {isFatalLinkerError} from '@angular/compiler-cli/linker';
+import {ProductService} from '../../../service/product-service/product.service';
 import {TokenService} from '../../../service/token.service';
+import {Product} from '../../../model/Product';
 
 @Component({
-  selector: 'app-page-user',
-  templateUrl: './page-user.component.html',
-  styleUrls: ['./page-user.component.scss']
+  selector: 'app-page-product',
+  templateUrl: './page-product.component.html',
+  styleUrls: ['./page-product.component.scss']
 })
-export class PageUserComponent implements OnInit {
+export class PageProductComponent implements OnInit {
   totalElements: number = 0;
-  users: UserAccount;
   loading: boolean;
   searchText;
   isCheckUser;
-
-  username;
+  products:Product[]=[];
+searchProducts:Product[]=[];
+  nameProduct;
   checkSearch=false;
   sizeSearch:number;
-  userSearch:UserAccount[]=[];
-  constructor(private adminService: AdminService,private tokenService:TokenService) {
-  }
+  constructor(private productService:ProductService,private tokenService:TokenService) { }
 
   ngOnInit(): void {
     this.getListRequest({page:0,size:5})
     if (this.tokenService.getToken()){
       this.isCheckUser=true;
-      if (!this.checkSearch){
-        this.getListRequest({page:0,size:5});
-      }
+    }
+    if (!this.isCheckUser){
+      this.getListRequest({page:0,size:5})
     }
   }
-
   private getListRequest(request) {
     this.loading = true;
-    this.adminService.pageUser(request).subscribe(data => {
-      this.users = data['content'];
+    this.productService.pageProduct(request).subscribe(data => {
+      this.products = data['content'];
       console.log('data[content]--------', data['content']);
       this.totalElements = data['totalElements'];
       this.loading = false;
@@ -52,15 +48,17 @@ export class PageUserComponent implements OnInit {
     request['size'] = event.pageSize.toString();
     console.log('request[size]=====', request['size']);
     this.getListRequest(request);
+
+    // this.getSearchRequest(request,this.name);
   }
-  private getSearchRequest(request,username){
+  private getSearchRequest(request,nameProduct){
     this.loading=true;
-    this.username=username;
-    if (this.username==''){
+    this.nameProduct=nameProduct;
+    if (this.nameProduct==''){
       return;
     }
-    this.adminService.searchUsername(request,this.username).subscribe(data=>{
-      this.userSearch=data['content'];
+    this.productService.searchNameProduct(request,this.nameProduct).subscribe(data=>{
+      this.searchProducts=data['content'];
       this.totalElements=data['totalElements'];
       this.sizeSearch=this.totalElements;
       this.loading = false;
@@ -71,10 +69,10 @@ export class PageUserComponent implements OnInit {
   }
   private onSearch(){
     this.checkSearch=true;
-    if (this.username==''){
+    if (this.nameProduct==''){
       this.checkSearch=false;
       return;
     }
-    this.getSearchRequest({page:0,size:this.sizeSearch},this.username);
+    this.getSearchRequest({page:0,size:this.sizeSearch},this.nameProduct);
   }
 }
